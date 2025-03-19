@@ -1,0 +1,40 @@
+body{ 
+    margin: 0; 
+    padding: 0; 
+}
+
+#navigation{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(255, 255, 255); 
+    border-bottom: 2px solid black;
+}
+
+h1 a{
+    text-decoration: none;
+    color: black;
+}
+
+#navigation h1{
+    margin-left: 1%; 
+}
+
+#menu{
+    display: flex;
+    flex-direction: row-reverse;
+    list-style: none;
+    margin: 0; 
+    padding: 0;
+}
+
+.menu_item{
+    color: black;  
+    margin-right: 1em; 
+    font-size: 1.5rem; 
+}
+
+.menu_item a{
+    text-decoration: none;
+    color: black
+}

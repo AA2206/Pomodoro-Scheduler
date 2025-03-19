@@ -1,0 +1,133 @@
+body {
+    margin: 0; 
+    padding: 0; 
+    height: 90vh;
+}
+
+h1 a{
+    text-decoration: none;
+    color: black;
+}
+
+#navigation{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(255, 255, 255); 
+    border-bottom: 2px solid black;
+}
+
+#navigation h1{
+    margin-left: 1%; 
+}
+
+#menu{
+    display: flex;
+    flex-direction: row-reverse;
+    list-style: none;
+    margin: 0; 
+    padding: 0;
+}
+
+.menu_item{
+    color: black;  
+    margin-right: 1em; 
+    font-size: 1.5rem; 
+}
+
+.menu_item a{
+    text-decoration: none;
+    color: black
+}
+
+#container{
+    display: flex;
+    margin-left: 1%; 
+    height: 100%;
+    justify-content: center;
+    padding: 2em;
+    padding-top: 3em;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px){
+    #container{
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+}
+
+#side_panel #options{
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#options{
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin: 0; 
+    padding: 0;
+}
+
+@media (max-width: 768px){
+    #side_panel #options{
+        flex-direction: row;
+    }
+}
+
+.side_option{
+    color: black;  
+    margin: 1em; 
+    font-size: 1.5rem; 
+}
+
+.side_option a{
+    text-decoration: none;
+    color: black; 
+}
+
+.stopwatch-container{
+    width: 100%;
+    height: 75%;
+    gap: 2em; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    align-items: center;
+}
+
+@media (max-width: 768px){
+    .stopwatch-container{
+        margin-top: 2em;
+    }
+}
+
+
+#timer_label{
+    margin: 0;
+    font-size: 2.25em; 
+    color: black
+}
+
+#stopwatch{
+    font-size: 3em;
+    color: black; 
+    margin: 0;
+}
+
+.buttons{
+    display: flex;
+    gap: 1em; 
+}
+
+button{
+    cursor: pointer;
+    background-color: blue;
+    color: white;
+    font-size: 1rem;
+    padding: 5px;
+}

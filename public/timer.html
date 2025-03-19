@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel = "stylesheet" href = "./timer-styles.css">
+    </head>
+    <body>
+
+        <div id = "navigation">
+            <h1><a href = "./To-Do.html">Pomodoro Planner</a></h1>
+            <nav id = "navbar">
+                <ul id = "menu">
+                    <ul id = "menu">
+                        <li class = "menu_item"><a href = "./index.html">Logout</a></li>
+                        <li class = "menu_item"><a href = "./analytics.html">Analytics</a></li>
+                        <li class = "menu_item"><a href = "./pomodoro.html">Work</a></li>
+                        <li class = "menu_item"><a href = "./To-Do.html">To-Do</a></li>
+                    </ul>
+                </ul>
+            </nav>
+        </div>
+
+        <div id = "container">
+            <div id = "side_panel">
+                <ul id = "options">
+                    <li class = "side_option"><a href = "./timer.html">Timer</a></li>
+                    <li class = "side_option"><a href = "./pomodoro.html">Settings</a></li>
+                </ul>
+            </div>
+
+            <div class = "stopwatch-container">
+                <p id = "timer_label">Work</p>
+                <h1 id = "stopwatch">00:00:00</h1>
+                <div class = "buttons">
+                    <button id = "startStop">Start</button>
+                    <button id = "reset">Reset</button>
+                    <button id = "skip">Skip</button>
+                    <button id = "finish">Finish</button>
+                </div>
+            </div>
+        </div>    
+
+        <script src = "./Timer-script.js"></script>
+    </body>
+</html>

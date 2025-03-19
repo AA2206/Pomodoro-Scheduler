@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="./login_styles.css">
+    </head>
+    <body>
+        <div id = "container">
+            <form id="inputForm" method="POST" action="/login" onsubmit="storeUsername(event)">
+                <h1>Login In</h1>
+                <div id = "usernameContainer">
+                    <label for="username">Username</label>
+                    <br>
+                    <input type="text" name="username" id="username" required>   
+                </div>
+    
+                <div id = "passwordContainer">
+                    <label for="password">Password</label>
+                    <br>
+                    <input type="password" name="password" id="password" required>
+                </div>
+    
+                <input id = "submit" type="submit" value="Login">
+            </form>
+        </div>
+        
+
+        <script>
+            function storeUsername(event) {
+                const username = document.getElementById('username').value;
+                localStorage.setItem('username', username); 
+
+                // Manually submitting the form
+                event.target.submit();
+            }
+        </script>
+    </body>
+</html>

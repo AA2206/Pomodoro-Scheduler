@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel = "stylesheet" href = "./pomodoro-styles.css"> 
+    </head>
+    <body>
+        <div id = "navigation">
+            <h1><a href = "./To-Do.html">Pomodoro Planner</a></h1>
+            <nav id = "navbar">
+                <ul id = "menu">
+                    <ul id = "menu">
+                        <li class = "menu_item"><a href = "./index.html">Logout</a></li>
+                        <li class = "menu_item"><a href = "./analytics.html">Analytics</a></li>
+                        <li class = "menu_item"><a href = "./pomodoro.html">Work</a></li>
+                        <li class = "menu_item"><a href = "./To-Do.html">To-Do</a></li>
+                    </ul>
+                </ul>
+            </nav>
+        </div>
+        
+        <div id = "container">
+            <div id = "side_panel">
+                <ul id = "options">
+                    <li class = "side_option"><a href = "./timer.html">Timer</a></li>
+                    <li class = "side_option"><a href = "./pomodoro.html">Settings</a></li>
+                </ul>
+            </div>
+            <div id = "form_container">
+                <form id = "timer_settings" action = "./timer.html" method = "GET">
+                    <div class = "timer_inputs">
+                        <h2>Work Timer</h2>
+                        <div class = "inputs">
+                            <div class = "input_field">
+                                <label for = "work_hours">Hours</label>
+                                <br>
+                                <input type = "number" name = "work_hours" id = "hours" required>
+                            </div>
+                            
+                            <div class = "input_field">
+                                <label for = "work_minutes">Minutes</label>
+                                <br>
+                                <input type = "number" name = "work_minutes" required>
+                            </div>
+                            
+                            <div class = "input_field">
+                                <label for = "work_seconds">Seconds</label>
+                                <br>
+                                <input type = "number" name = "work_seconds" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class = "timer_inputs">
+                        <h2>Break Timer</h2>
+                        <div class = "inputs">
+                            <div class = "input_field">
+                                <label for = "break_hours">Hours</label>
+                                <br>
+                                <input type = "number" name = "break_hours" required>
+                            </div>
+                            
+                            <div class = "input_field">
+                                <label for = "break_minutes">Minutes</label>
+                                <br>
+                                <input type = "number" name = "break_minutes" required>
+                            </div>
+
+                            <div class = "input_field">
+                                <label for = "break_seconds">Seconds</label>
+                                <br>
+                                <input type = "number" name = "break_seconds" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class = "timer_inputs">
+                        <h2>Choose Event</h2>
+                        <div class = "inputs">
+                            <div class = "input_field">
+                                <label for = "dropdown">Select Task</label>
+                                <br>
+                                <select id = "dropdown" name = "tasks" required></select>
+                            </div>
+                        </div>                   
+                    </div>
+
+                    <input id = "submit" type = "submit" value = "submit"> 
+                </form>
+            </div>
+        </div>
+        <script src = "./pomodoro_script.js"></script>
+    </body>
+</html>

@@ -1,0 +1,46 @@
+body{
+    background-color: white;
+    margin: 0; 
+    padding: 0; 
+    height: 90vh; 
+} 
+
+#container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; 
+}
+
+#inputForm{
+    display: flex;
+    flex-direction: column;
+    gap: 2.5em; 
+    justify-content: center;
+    align-items: center;
+}
+
+#inputForm h1{
+    font-size: 2rem;
+    text-align: left;
+    margin: 0; 
+}
+
+#inputForm label{
+    font-size: 1.25rem;
+}
+
+#inputForm input{
+    height: 2rem; 
+    width: 300px; 
+    font-size: 1rem; 
+}
+
+#inputForm #submit{
+    background-color: rgb(64, 45, 235);
+    color: white; 
+    font-size: 1.5rem;
+    border-radius: 1em;
+    width: 300px; 
+    height: 50px; 
+}
