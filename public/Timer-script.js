@@ -147,7 +147,7 @@ skipButton.addEventListener("click", () => {
 finishButton.addEventListener("click", () => {
     try {
         clearInterval(time_spent_interval); 
-        storedDate = localStorage.getItem("date_time");
+        storedDate = new Date(); 
 
         const response = fetch('/add-work', {
             method: 'POST',
@@ -155,7 +155,7 @@ finishButton.addEventListener("click", () => {
                 'Content-Type': 'application/json', 
             }, 
             body: JSON.stringify({
-                date_time: storedDate,
+                date_time: storedDate.toDateString(),
                 timeSpent: time_spent/60, 
                 workTime: work_time/60, 
                 breakTime: break_time/60

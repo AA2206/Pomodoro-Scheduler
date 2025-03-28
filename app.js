@@ -22,8 +22,9 @@ initializeDatabases().then(() => {
     
     const port = process.env.PORT || 5001; // Use Heroku's port or fallback to 5001 for local development
     app.listen(port, () => {
-        console.log(`Server is running on port ${port}`);
+    console.log(`Server is running on port http://localhost:${port}`);
     });
+
 
 }).catch((err) => {
     console.error("Error initializing databases:", err);
