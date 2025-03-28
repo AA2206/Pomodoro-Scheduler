@@ -1,7 +1,7 @@
 const express = require('express')
 const session = require('express-session');
 const path = require('path')
-const bcrypt = require('bcrypt'); 
+const bcrypt = require('bcryptjs');
 const Database = require('./database'); 
 
 const app = express(); 
@@ -20,7 +20,7 @@ async function initializeDatabases() {
 initializeDatabases().then(() => {
     console.log("Databases initialized");
     
-    const PORT = 5000; 
+    const PORT = 5001; 
     app.listen(PORT, () => {
         console.log(`Server is running at http://localhost:${PORT}`); 
     }); 
