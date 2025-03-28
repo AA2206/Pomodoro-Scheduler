@@ -156,9 +156,9 @@ finishButton.addEventListener("click", () => {
             }, 
             body: JSON.stringify({
                 date_time: storedDate,
-                timeSpent: time_spent, 
-                workTime: work_time, 
-                breakTime: break_time
+                timeSpent: time_spent/60, 
+                workTime: work_time/60, 
+                breakTime: break_time/60
             })
         })
     }

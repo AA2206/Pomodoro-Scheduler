@@ -4,7 +4,18 @@ body {
     height: 100vh;
 }
 
+#logo_container{
+    width: 50%;
+    display: flex;
+}
+
+#logo{
+    height: 80px; 
+    width: auto; 
+}
+
 h1 a{
+    margin: 0; 
     text-decoration: none;
     color: black;
 }

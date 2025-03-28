@@ -1,6 +1,6 @@
 body{
     background-color: white;
-    margin: 0; 
+    margin: 2%; 
     padding: 0; 
     height: 90vh; 
 } 
@@ -10,6 +10,16 @@ body{
     justify-content: center;
     align-items: center;
     height: 100%; 
+}
+
+#logo_container{
+    width: 50%;
+    display: flex;
+}
+
+#logo{
+    height: 80px; 
+    width: auto; 
 }
 
 #inputForm{

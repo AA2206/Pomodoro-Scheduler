@@ -118,18 +118,33 @@ app.get('/fetchTasks', async (req, res) => {
     }
 });
 
-app.get('/fetchWorkStats', async (req, res) => {
+app.post('/fetchWorkStats', async (req, res) => {
     const username = req.session.username;
+    const inputDate = req.body.date;  // Assuming the date is sent as a string in the body
 
-    try{
-        const workEntries = await work_stats.getWorkStatsEntries(username); 
-        res.json(workEntries); 
+    // Ensure the date is provided and valid
+    if (!inputDate) {
+        return res.status(400).send('Date is required');
     }
-    catch(err){
+
+    try {
+        // Convert the inputDate to a Date object (you can validate or process it if necessary)
+        const date = new Date(inputDate);  // Assuming the client sends a valid ISO string
+
+        // Check if the date is valid
+        if (isNaN(date)) {
+            return res.status(400).send('Invalid date format');
+        }
+
+        // Pass the date to the getWorkStatsEntries function
+        const workEntries = await work_stats.getWorkStatsEntries(username, date); 
+        res.json(workEntries);  // Send the fetched work entries as a JSON response
+    } catch (err) {
         console.log('Error fetching work stats entries: ', err);
         res.status(500).send('Internal server error');
     }
-}); 
+});
+
 
 app.post('/remove-task', async (req, res) => {
     const { task_description, date_time } = req.body; 

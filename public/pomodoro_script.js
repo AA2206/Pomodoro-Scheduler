@@ -4,10 +4,10 @@ async function populateDropdown() {
     if (select) {  
         select.innerHTML = ''; // Clear existing options
 
-        storedDate = localStorage.getItem("date_time");
+        date = new Date(); 
 
         const params = new URLSearchParams({
-            date_time: storedDate 
+            date_time: date.toDateString() 
         });
 
         try {

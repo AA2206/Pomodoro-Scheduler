@@ -33,8 +33,6 @@ const manipulate = () => {
     currdate.innerText = `${months[month]} ${year}`; 
 
     day.innerHTML = calendarHTML; 
-
-    localStorage.setItem("date_time", date.toDateString());
 }
 
 manipulate(); 
@@ -66,8 +64,6 @@ function changeDay(selectedDay) {
 
     date.setDate(dayNumber); 
 
-    localStorage.setItem("date_time", date.toDateString());
-
     fetchTasksForUser();
 
 }
@@ -75,7 +71,6 @@ function changeDay(selectedDay) {
 async function addTask() {
     const inputBox = document.getElementById('taskInput');
     const taskDescription = inputBox.value;
-    const username = localStorage.getItem('username');
 
     if (taskDescription === '') {
         alert("You must write something");

@@ -226,9 +226,9 @@ class Database {
     });
   }
 
-  getWorkStatsEntries(username){
+  getWorkStatsEntries(username, input_date){
     const connection = this.getDbConnection(); 
-    const today = new Date();
+    const today = new Date(input_date);
     const dayOfWeek = today.getDay();
     const lastMonday = new Date(today);
   

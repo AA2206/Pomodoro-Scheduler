@@ -1,6 +1,10 @@
+html{
+    height: 100vh;
+}
 body{ 
     margin: 0; 
     padding: 0; 
+    height: 100%;
 }
 
 #navigation{
@@ -11,7 +15,18 @@ body{
     border-bottom: 2px solid black;
 }
 
+#logo_container{
+    width: 50%;
+    display: flex;
+}
+
+#logo{
+    height: 80px; 
+    width: auto; 
+}
+
 h1 a{
+    margin: 0; 
     text-decoration: none;
     color: black;
 }
@@ -38,3 +53,19 @@ h1 a{
     text-decoration: none;
     color: black
 }
+
+#chart_header{
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+
+#chart_header span:hover {
+    background: #f2f2f2;
+}
+
+#chart-container {
+    width: 100%;
+    height: 80%;
+}
+

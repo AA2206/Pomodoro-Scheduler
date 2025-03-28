@@ -5,11 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Analytics</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     <link rel = "stylesheet" href = "./analytics-styles.css"> 
 </head>
 <body>
     <div id = "navigation">
-        <h1><a href = "./To-Do.html">Pomodoro Planner</a></h1>
+        <div id = "logo_container">
+            <a href = "./To-Do.html"><img src = "images/Pomodoro_Planner_Logo.png" id = "logo"></a>
+            <h1><a href = "./To-Do.html">Pomodoro Planner</a></h1>
+        </div>
         <nav id = "navbar">
             <ul id = "menu">
                 <ul id = "menu">
@@ -21,6 +25,12 @@
             </ul>
         </nav>
     </div> 
+    
+    <header id = "chart_header">
+        <span id = "calendar-prev" class = "material-symbols-rounded" onclick="prev_week()">Chevron_left</span>
+        <h1 id = "chart_title"></h1>
+        <span id = "calendar-next" class = "material-symbols-rounded" onclick="next_week()">Chevron_right</span>
+    </header>
 
     <div id="chart-container"></div>
 
