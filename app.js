@@ -1,5 +1,6 @@
 const express = require('express')
 const session = require('express-session');
+const cors = require('cors'); 
 const path = require('path')
 const bcrypt = require('bcryptjs');
 const Database = require('./database'); 
@@ -10,6 +11,8 @@ const tasks = new Database('tasks.sql', 'tasks.db', 'tasks');
 const work_stats = new Database('work_stats.sql', 'work_stats.db', 'work_stats'); 
 
 console.log("hello"); 
+
+app.use(cors());
 
 async function initializeDatabases() {
     await db.initDb();

@@ -1,3 +1,5 @@
+const backendUrl = "https://pomodoro-schedular-829cab746192.herokuapp.com"; 
+
 let date = new Date();
 let dayOfWeek = date.getDay();
 
@@ -20,7 +22,7 @@ async function setChartTitle() {
 
 async function fetchWorkStatsForDate(date) {
     // Fetch work statistics from the server based on the current date
-    const response = await fetch('/fetchWorkStats', {
+    const response = await fetch(`${backendUrl}/fetchWorkStats`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

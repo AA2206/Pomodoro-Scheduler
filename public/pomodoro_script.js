@@ -1,3 +1,5 @@
+const backendUrl = "https://pomodoro-schedular-829cab746192.herokuapp.com"; 
+
 const select = document.getElementById("dropdown");
 
 async function populateDropdown() {
@@ -11,7 +13,7 @@ async function populateDropdown() {
         });
 
         try {
-            const response = await fetch(`/fetchTasks?${params.toString()}`, {
+            const response = await fetch(`${backendUrl}/fetchTasks?${params.toString()}`, {
                 method: 'GET'
             });
 

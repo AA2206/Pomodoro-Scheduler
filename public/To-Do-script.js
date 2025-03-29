@@ -1,3 +1,5 @@
+const backendUrl = "https://pomodoro-schedular-829cab746192.herokuapp.com"; 
+
 const listContainer = document.getElementById("taskList"); 
 
 let date = new Date(); 
@@ -78,7 +80,7 @@ async function addTask() {
     }
 
     try { 
-        const response = await fetch('/add-task', {
+        const response = await fetch(`${backendUrl}/add-task`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -107,7 +109,7 @@ async function fetchTasksForUser() {
     });
 
     try {
-        const response = await fetch(`/fetchTasks?${params.toString()}`, {
+        const response = await fetch(`${backendUrl}/fetchTasks?${params.toString()}`, {
             method: 'GET'
         });
     
@@ -140,7 +142,7 @@ listContainer.addEventListener("click", async function(e) {
     } else if (e.target.tagName === "SPAN") {
         try {
             const taskDescription = e.target.parentElement.firstChild.textContent; 
-            const response = await fetch('/remove-task', { 
+            const response = await fetch(`${backendUrl}/remove-task`, { 
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

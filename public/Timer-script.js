@@ -1,3 +1,5 @@
+const backendUrl = "https://pomodoro-schedular-829cab746192.herokuapp.com"; 
+
 const params = new URLSearchParams(window.location.search)
 
 let count = 3600 * parseInt(params.get('work_hours')) + 60 * parseInt(params.get('work_minutes')) + parseInt(params.get('work_seconds'));  
@@ -149,7 +151,7 @@ finishButton.addEventListener("click", () => {
         clearInterval(time_spent_interval); 
         storedDate = new Date(); 
 
-        const response = fetch('/add-work', {
+        const response = fetch(`${backendUrl}/add-work`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json', 
