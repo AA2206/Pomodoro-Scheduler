@@ -40,23 +40,22 @@ app.use(express.json());
 const mongoUrl = 'mongodb+srv://arpanagar06:Mongo4%40rpN%211@cluster0.jvl79lz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0&tls=true';
 
 app.use(session({
-    secret: process.env.SESSION_SECRET || 'your_secret_key', // Use environment variable in production
+    secret: process.env.SESSION_SECRET || 'your_secret_key',
     resave: false,
     saveUninitialized: true,
     store: MongoStore.create({
-        mongoUrl: mongoUrl,
+        mongoUrl: 'mongodb+srv://arpanagar06:Mongo4%40rpN%211@cluster0.jvl79lz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0&tls=true',
         collectionName: 'sessions',
         ttl: 60 * 60 * 24,
         mongoOptions: {
-            ssl: true, // Enable SSL
-            sslValidate: true,
-            socketTimeoutMS: 30000, // 30 seconds
-            connectTimeoutMS: 30000, // 30 seconds
-            serverSelectionTimeoutMS: 5000, // 5 seconds
+            tls: true, // Use 'tls' instead of 'ssl'
+            socketTimeoutMS: 30000,
+            connectTimeoutMS: 30000,
+            serverSelectionTimeoutMS: 5000,
         }
     }),
     cookie: {
-        secure: process.env.NODE_ENV === 'production', // true in production (Heroku)
+        secure: process.env.NODE_ENV === 'production',
         maxAge: 1000 * 60 * 60 * 24,
         sameSite: 'lax'
     },
