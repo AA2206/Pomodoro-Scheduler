@@ -43,7 +43,7 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     store: MongoStore.create({
-        mongoUrl: 'mongodb+srv://arpanagar06:Mongo4@rpN!1@cluster0.jvl79lz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',
+        mongoUrl: 'mongodb+srv://arpanagar06:Mongo4%40rpN%211@cluster0.jvl79lz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',
         collectionName: 'sessions', // Optional: specify the collection name
         ttl: 60 * 60 * 24, // Session expiration time in seconds (1 day)
     }),
