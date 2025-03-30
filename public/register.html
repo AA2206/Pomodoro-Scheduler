@@ -52,7 +52,7 @@
                     } else {
                         // Handle registration failure (e.g., username already taken)
                         const errorMessage = await response.text();
-                        document.getElementById('errorMessage').innerText = 'Registration failed. Please try again.';
+                        document.getElementById('errorMessage').innerText = errorMessage || 'Registration failed. Please try again.';
                     }
                 } catch (error) {
                     console.error("Error:", error);
