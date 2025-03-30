@@ -38,18 +38,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(session({
-    secret: 'your_secret_key', // Keep this secure and private
+    secret: 'your_secret_key',
     resave: false,
     saveUninitialized: true,
-    store: MongoStore.create({
-        mongoUrl: 'mongodb+srv://arpanagar06:Mongo4@rpN!1@cluster0.jvl79lz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',
-        collectionName: 'sessions', // Optional: specify the collection name
-        ttl: 60 * 60 * 24, // Session expiration time in seconds (1 day)
-    }),
-    cookie: {
-        secure: false, // Use `true` if your app runs on HTTPS
-        maxAge: 1000 * 60 * 60 * 24, // 1 day in milliseconds
-    },
+    cookie: { secure: false } 
 }));
 
 app.use(express.static(path.join(__dirname, 'public')))
