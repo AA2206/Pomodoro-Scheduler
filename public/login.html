@@ -8,7 +8,7 @@
             <a href = "./index.html"><img src = "images/Pomodoro_Planner_Logo.png" id = "logo"></a>
         </div>
         <div id = "container">
-            <form id="inputForm" method="POST" action="/login" onsubmit="storeUsername(event)">
+            <form id="inputForm" method="POST" action="/login" onsubmit="handleLogin(event)">
                 <h1>Login In</h1>
                 <div id = "usernameContainer">
                     <label for="username">Username</label>
@@ -24,17 +24,44 @@
     
                 <input id = "submit" type="submit" value="Login">
             </form>
+            <p id="errorMessage" style="color:red;"></p> 
         </div>
         
 
         <script>
-            function storeUsername(event) {
-                const username = document.getElementById('username').value;
-                localStorage.setItem('username', username); 
+            const backendUrl = "https://pomodoro-schedular-829cab746192.herokuapp.com";  // Your Heroku URL
 
-                // Manually submitting the form
-                event.target.submit();
+            async function handleLogin(event) {
+                event.preventDefault(); // Prevent the default form submission
+
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+
+                try {
+                    const response = await fetch(`${backendUrl}/login`, {  // Use Heroku backend URL here
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ username, password }),
+                    });
+
+                    if (response.ok) {
+                        // Store username after successful login
+                        localStorage.setItem('username', username);
+
+                        // Redirect to the task page
+                        window.location.href = '/To-Do.html';
+                    } else {
+                        // Handle failed login attempt
+                        document.getElementById('errorMessage').innerText = 'Login failed. Please try again.';
+                    }
+                } catch (error) {
+                        console.error("Error:", error);
+                        document.getElementById('errorMessage').innerText = 'Something went wrong. Please try again later.';
+                }
             }
+
         </script>
     </body>
 </html>

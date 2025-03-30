@@ -4,29 +4,65 @@
         <link rel="stylesheet" href="./login_styles.css">
     </head>
     <body>
-        <div id = "logo_container">
-            <a href = "./index.html"><img src = "images/Pomodoro_Planner_Logo.png" id = "logo"></a>
+        <div id="logo_container">
+            <a href="./index.html"><img src="images/Pomodoro_Planner_Logo.png" id="logo"></a>
         </div>
-        <div id = "container">
-            <form id="inputForm" method="POST" action="/register">
+        <div id="container">
+            <!-- Removed action, now using JavaScript to handle the submit -->
+            <form id="inputForm" method="POST" onsubmit="handleRegister(event)">
                 <h1>Register</h1>
-                <div id = "usernameContainer">
+                <div id="usernameContainer">
                     <label for="username">Username</label>
                     <br>
                     <input type="text" name="username" id="username" required>   
                 </div>
     
-                <div id = "passwordContainer">
+                <div id="passwordContainer">
                     <label for="password">Password</label>
                     <br>
                     <input type="password" name="password" id="password" required>
                 </div>
     
-                <input id = "submit" type="submit" value="Register">
+                <input id="submit" type="submit" value="Register">
             </form>
+            <p id="errorMessage" style="color:red;"></p> <!-- For displaying error messages -->
         </div>
+        
+        <script>
+            const backendUrl = "https://pomodoro-schedular-829cab746192.herokuapp.com";  // Your Heroku URL
+
+            async function handleRegister(event) {
+                event.preventDefault(); // Prevent the default form submission
+
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+
+                try {
+                    const response = await fetch(`${backendUrl}/register`, {  // Use Heroku backend URL here
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ username, password }),
+                    });
+
+                    if (response.ok) {
+                        // Redirect to login page after successful registration
+                        window.location.href = '/login.html';
+                    } else {
+                        // Handle registration failure (e.g., username already taken)
+                        const errorMessage = await response.text();
+                        document.getElementById('errorMessage').innerText = 'Registration failed. Please try again.';
+                    }
+                } catch (error) {
+                    console.error("Error:", error);
+                    document.getElementById('errorMessage').innerText = 'Something went wrong. Please try again later.';
+                }
+            }
+        </script>
     </body>
 </html>
+
 
 
 
