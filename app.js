@@ -24,12 +24,10 @@ async function initializeDatabases() {
 initializeDatabases().then(() => {
     console.log("Databases initialized");
     
-    const port = process.env.PORT || 5001; // Use Heroku's port or fallback to 5001 for local development
+    const port = process.env.PORT || 5001;
     app.listen(port, () => {
-    console.log(`Server is running on port http://localhost:${port}`);
+        console.log(`Server is running on port http://localhost:${port}`);
     });
-
-
 }).catch((err) => {
     console.error("Error initializing databases:", err);
     process.exit(1);
@@ -38,22 +36,34 @@ initializeDatabases().then(() => {
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// Updated MongoDB connection configuration
+const mongoUrl = 'mongodb+srv://arpanagar06:Mongo4%40rpN%211@cluster0.jvl79lz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0&tls=true';
+
 app.use(session({
-    secret: 'your_secret_key', // Keep this secure and private
+    secret: process.env.SESSION_SECRET || 'your_secret_key', // Use environment variable in production
     resave: false,
     saveUninitialized: true,
     store: MongoStore.create({
-        mongoUrl: 'mongodb+srv://arpanagar06:Mongo4%40rpN%211@cluster0.jvl79lz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',
-        collectionName: 'sessions', // Optional: specify the collection name
-        ttl: 60 * 60 * 24, // Session expiration time in seconds (1 day)
+        mongoUrl: mongoUrl,
+        collectionName: 'sessions',
+        ttl: 60 * 60 * 24,
+        mongoOptions: {
+            ssl: true, // Enable SSL
+            sslValidate: true,
+            socketTimeoutMS: 30000, // 30 seconds
+            connectTimeoutMS: 30000, // 30 seconds
+            serverSelectionTimeoutMS: 5000, // 5 seconds
+        }
     }),
     cookie: {
-        secure: false, // Use `true` if your app runs on HTTPS
-        maxAge: 1000 * 60 * 60 * 24, // 1 day in milliseconds
+        secure: process.env.NODE_ENV === 'production', // true in production (Heroku)
+        maxAge: 1000 * 60 * 60 * 24,
+        sameSite: 'lax'
     },
 }));
 
 app.use(express.static(path.join(__dirname, 'public')))
+
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'))
