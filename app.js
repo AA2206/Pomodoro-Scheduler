@@ -1,6 +1,5 @@
 const express = require('express')
 const session = require('express-session');
-const MongoStore = require('connect-mongo');
 const cors = require('cors'); 
 const path = require('path')
 const bcrypt = require('bcryptjs');
@@ -24,10 +23,12 @@ async function initializeDatabases() {
 initializeDatabases().then(() => {
     console.log("Databases initialized");
     
-    const port = process.env.PORT || 5001;
+    const port = process.env.PORT || 5001; // Use Heroku's port or fallback to 5001 for local development
     app.listen(port, () => {
-        console.log(`Server is running on port http://localhost:${port}`);
+    console.log(`Server is running on port http://localhost:${port}`);
     });
+
+
 }).catch((err) => {
     console.error("Error initializing databases:", err);
     process.exit(1);
@@ -36,33 +37,22 @@ initializeDatabases().then(() => {
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Updated MongoDB connection configuration
-const mongoUrl = 'mongodb+srv://arpanagar06:Mongo4%40rpN%211@cluster0.jvl79lz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0&tls=true';
-
 app.use(session({
-    secret: process.env.SESSION_SECRET || 'your_secret_key',
+    secret: 'your_secret_key', // Keep this secure and private
     resave: false,
     saveUninitialized: true,
     store: MongoStore.create({
-        mongoUrl: 'mongodb+srv://arpanagar06:Mongo4%40rpN%211@cluster0.jvl79lz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0&tls=true',
-        collectionName: 'sessions',
-        ttl: 60 * 60 * 24,
-        mongoOptions: {
-            tls: true, // Use 'tls' instead of 'ssl'
-            socketTimeoutMS: 30000,
-            connectTimeoutMS: 30000,
-            serverSelectionTimeoutMS: 5000,
-        }
+        mongoUrl: 'mongodb+srv://arpanagar06:Mongo4@rpN!1@cluster0.jvl79lz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',
+        collectionName: 'sessions', // Optional: specify the collection name
+        ttl: 60 * 60 * 24, // Session expiration time in seconds (1 day)
     }),
     cookie: {
-        secure: process.env.NODE_ENV === 'production',
-        maxAge: 1000 * 60 * 60 * 24,
-        sameSite: 'lax'
+        secure: false, // Use `true` if your app runs on HTTPS
+        maxAge: 1000 * 60 * 60 * 24, // 1 day in milliseconds
     },
 }));
 
 app.use(express.static(path.join(__dirname, 'public')))
-
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'))
