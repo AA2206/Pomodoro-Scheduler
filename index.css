@@ -1,0 +1,7 @@
+@import "tailwindcss"; 
+
+@layer base{
+    .link_tag{
+        @apply m-0 list-none; 
+    }
+}
