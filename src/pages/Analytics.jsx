@@ -1,5 +1,6 @@
 import Navigation from "../Components/Navigation"
 import React, { useEffect, useRef, useState } from "react";
+import { API_URL } from "../config";
 
 export default function Analytics(){
     const menuItems = [{ name: "Logout", url: "/"}, { name: "Analytics", url: "/analytics"}, { name: "Work", url: "/work"}, { name: "To-Do", url: "/to-do"}]
@@ -24,7 +25,7 @@ export default function Analytics(){
 
     async function fetchWorkStatsForDate(date) {
         // Fetch work statistics from the server based on the current date
-        const response = await fetch('http://localhost:5001/fetchWorkStats', {
+        const response = await fetch(`${API_URL}/fetchWorkStats`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

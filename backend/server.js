@@ -5,10 +5,12 @@ const cors = require('cors');
 const path = require('path')
 const bcrypt = require('bcryptjs');
 const MongoClient = require('mongodb')
-const Database = require('./Database'); 
-const DatabaseMongo = require('./DatabaseMongo'); 
+const DatabaseMongo = require('./DatabaseMongo');
 
-const app = express(); 
+const app = express();
+app.set('trust proxy', 1); // trust Railway's proxy so secure cookies work
+
+const isProd = process.env.NODE_ENV === 'production';
 
 const url = process.env.MONGO_URL;
 
@@ -53,8 +55,12 @@ app.use(express.json());
 
 app.use(session({
     secret: process.env.SESSION_SECRET || 'dev_only_insecure_secret',
-    resave: false, 
+    resave: false,
     saveUninitialized: false,
+    cookie: {
+        secure: isProd,                    // HTTPS-only in production, off for local dev
+        sameSite: isProd ? 'none' : 'lax', // allow cross-site cookie in production
+    },
 }));
 
 app.use(express.static(path.join(__dirname, 'public')))

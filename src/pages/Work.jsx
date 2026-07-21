@@ -2,6 +2,7 @@ import Navigation from "../Components/Navigation"
 import { Link } from "react-router-dom"
 import React, { useState, useEffect, useRef } from 'react'; 
 import { useNavigate } from "react-router-dom";
+import { API_URL } from "../config";
 
 export default function Work(){
     const navigate = useNavigate(); 
@@ -47,7 +48,7 @@ export default function Work(){
             });
             
             try {
-                const response = await fetch(`http://localhost:5001/fetchTasks?${params.toString()}`, {
+                const response = await fetch(`${API_URL}/fetchTasks?${params.toString()}`, {
                     method: 'GET',
                     credentials: 'include',
                 });
@@ -165,7 +166,7 @@ export default function Work(){
 
             const date = new Date(); 
 
-            const response = await fetch('http://localhost:5001/add-work', {
+            const response = await fetch(`${API_URL}/add-work`, {
                 method: 'POST', 
                 headers: {
                     'Content-Type': 'application/json',

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import React, { useRef } from "react";
 import AuthForm from "../Components/AuthForm";
+import { API_URL } from "../config";
 
 export default function Login() {
     const inputRef = useRef(null);
@@ -16,7 +17,7 @@ export default function Login() {
         const password = formData.get("password");
 
         try{
-            const response = await fetch('http://localhost:5001/login', {
+            const response = await fetch(`${API_URL}/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

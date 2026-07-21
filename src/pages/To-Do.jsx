@@ -1,7 +1,8 @@
 import Navigation from "../Components/Navigation"
 import { useRef } from 'react'; 
 import { Link } from "react-router-dom"
-import React, { useState, useEffect } from 'react'; 
+import React, { useState, useEffect } from 'react';
+import { API_URL } from "../config";
 
 export default function ToDo(){
     const inputRef = useRef(); 
@@ -88,7 +89,7 @@ export default function ToDo(){
         }
 
         try {
-            const response = await fetch('http://localhost:5001/add-task', {
+            const response = await fetch(`${API_URL}/add-task`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -119,7 +120,7 @@ export default function ToDo(){
             });
     
             try {
-                const response = await fetch(`http://localhost:5001/fetchTasks?${params.toString()}`, {
+                const response = await fetch(`${API_URL}/fetchTasks?${params.toString()}`, {
                     method: 'GET',
                     credentials: 'include'
                 });
@@ -143,7 +144,7 @@ export default function ToDo(){
 
     async function removeTask(taskDescription, specificIndex){
         try {
-            const response = await fetch('http://localhost:5001/remove-task', {
+            const response = await fetch(`${API_URL}/remove-task`, {
                 method: 'POST', 
                 headers: {
                     'Content-Type': 'application/json',
