@@ -7,7 +7,7 @@
   to-do list, a calendar, a Pomodoro work/break timer, and analytics on how you
   spend your time.
 
-  ### 🔗 [Live Demo](https://pomodoro-scheduler.vercel.app)
+  ### 🔗 <a href="https://pomodoro-scheduler.vercel.app" target="_blank" rel="noopener noreferrer">Live Demo</a>
 </div>
 
 ---
