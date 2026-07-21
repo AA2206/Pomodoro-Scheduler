@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const session = require('express-session');
 const cors = require('cors'); 
@@ -9,7 +10,12 @@ const DatabaseMongo = require('./DatabaseMongo');
 
 const app = express(); 
 
-const url = "mongodb+srv://arpanag06:MongoDB4%40rpN%211@pomodoro-planner.9yrkknx.mongodb.net/";
+const url = process.env.MONGO_URL;
+
+if (!url) {
+    console.error("Missing MONGO_URL environment variable. Set it in your .env file.");
+    process.exit(1);
+}
 
 const users = new DatabaseMongo(); 
 const tasks = new DatabaseMongo(); 
@@ -18,7 +24,7 @@ const workStats = new DatabaseMongo();
 console.log("hello"); 
 
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: process.env.CLIENT_ORIGIN || 'http://localhost:5173',
     credentials: true
 }));
 
@@ -46,7 +52,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(session({
-    secret: 'your_secret_key',
+    secret: process.env.SESSION_SECRET || 'dev_only_insecure_secret',
     resave: false, 
     saveUninitialized: false,
 }));
@@ -68,7 +74,8 @@ app.post('/register', async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
   
     try {
-        const userId = await users.create({user: username, passcode: hashedPassword}); 
+        const userId = await users.create({user: username, passcode: hashedPassword});
+        req.session.user = username; // Log the new user in immediately
         return res.status(201).send();
     } catch (err) {
         console.error('Error inserting user into database:', err);

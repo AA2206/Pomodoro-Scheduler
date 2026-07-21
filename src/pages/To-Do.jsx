@@ -10,6 +10,15 @@ export default function ToDo(){
 
     const [date, setDate] = useState(new Date())
     const [taskList, setTaskList] = useState([])
+    const [checkedTasks, setCheckedTasks] = useState(new Set())
+
+    function toggleChecked(index){
+        setCheckedTasks(prev => {
+            const next = new Set(prev);
+            next.has(index) ? next.delete(index) : next.add(index);
+            return next;
+        });
+    }
 
     let year = date.getFullYear()
     let month = date.getMonth()
@@ -119,6 +128,7 @@ export default function ToDo(){
                     const tasks = await response.json();
                     const updatedList = tasks.map(item => item.task);
                     setTaskList(updatedList);
+                    setCheckedTasks(new Set());
                 } else {
                     console.log("No tasks found or user not logged in");
                 }
@@ -148,6 +158,14 @@ export default function ToDo(){
 
             if(response.ok){
                 setTaskList(prevTaskList => prevTaskList.filter((_, index) => index !== specificIndex));
+                setCheckedTasks(prev => {
+                    const next = new Set();
+                    prev.forEach(i => {
+                        if (i < specificIndex) next.add(i);
+                        else if (i > specificIndex) next.add(i - 1);
+                    });
+                    return next;
+                });
             }
             else {
                 console.log('Failed to remove task');
@@ -201,7 +219,7 @@ export default function ToDo(){
 
                         <ul id = "taskList">
                             {taskList.map((item, index) => (
-                                <li key = {index}>{item}<span onClick = {() => removeTask(item, index)}>&times;</span></li>
+                                <li key = {index} className = {checkedTasks.has(index) ? "checked" : ""} onClick = {() => toggleChecked(index)}>{item}<span onClick = {(e) => { e.stopPropagation(); removeTask(item, index); }}>&times;</span></li>
                             ))}
                         </ul>
                         <button id = "start_work"><Link id = "To-Do_link_tag" to = "/Work">Start Working</Link></button>

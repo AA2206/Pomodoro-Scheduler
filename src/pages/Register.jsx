@@ -21,12 +21,13 @@ export default function Register(){
                 headers: {
                     'Content-Type': 'application/json',
                 },
+                credentials: 'include',
                 body: JSON.stringify({ username, password }),
             });
 
             if(response.ok){
-                inputRef.current.innerText = ""; 
-                navigate('/login');
+                inputRef.current.innerText = "";
+                navigate('/to-do');
             }
             else{
                 const errorMessage = await response.text(); 
